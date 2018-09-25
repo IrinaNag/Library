@@ -3,7 +3,10 @@ package telran.library.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import telran.library.dao.AuthorsRepository;
 import telran.library.dao.BooksRepository;
@@ -13,7 +16,9 @@ import telran.library.dto.AuthorDto;
 import telran.library.dto.BookDto;
 import telran.library.dto.LibraryReturnCode;
 import telran.library.dto.ReaderDto;
+import telran.library.entities.Author;
 
+@Service
 public class LibraryOrm implements ILibrary {
 	@Autowired
 	AuthorsRepository authorsRepositiry;
@@ -24,12 +29,13 @@ public class LibraryOrm implements ILibrary {
 	@Autowired
 	RecordsRepository recordsRepositiry;
 
-	
-
 	@Override
+	@Transactional
 	public LibraryReturnCode addAuthor(AuthorDto author) {
-		// TODO Auto-generated method stub
-		return null;
+		if (authorsRepositiry.existsById(author.getName()))
+			return LibraryReturnCode.AUTHOR_ALREADY_EXISTS;
+		authorsRepositiry.save(new Author(author.getName(), author.getCountry()));
+		return LibraryReturnCode.OK;
 	}
 
 	@Override

@@ -13,7 +13,8 @@ public class Author {
 	@ManyToMany(mappedBy = "authors")
 	List<Book> books;
 
-	public Author() {}
+	public Author() {
+	}
 
 	public Author(String name, String country) {
 		this.name = name;

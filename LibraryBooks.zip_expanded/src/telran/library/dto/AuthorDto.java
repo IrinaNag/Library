@@ -1,17 +1,14 @@
 package telran.library.dto;
 
+import lombok.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Builder
+@ToString
 public class AuthorDto {
-public String name;
-public String country;
-public String getName() {
-	return name;
-}
-public String getCountry() {
-	return country;
-}
-@Override
-public String toString() {
-	return "AuthorDto [name=" + name + ", country=" + country + "]";
-}
+	public String name;
+	public String country;
 
 }
