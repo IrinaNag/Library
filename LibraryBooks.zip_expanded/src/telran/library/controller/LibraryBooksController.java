@@ -1,5 +1,7 @@
 package telran.library.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +28,11 @@ public class LibraryBooksController {
 	@PostMapping(value = LibraryApiConstants.ADD_READER)
 	public LibraryReturnCode addReader(@RequestBody ReaderDto reader) {
 		return library.addReader(reader);
+	}
+	
+	@GetMapping(value=LibraryApiConstants.GET_BOOK_AUTHORS)
+	public List<AuthorDto> getBookAuthors(@RequestParam long isbn){
+		return library.getBookAuthors(isbn);
 	}
 
 

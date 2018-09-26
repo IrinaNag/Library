@@ -87,9 +87,16 @@ public class LibraryOrm implements ILibrary {
 	}
 
 	@Override
+	
 	public List<AuthorDto> getBookAuthors(long isbn) {
-		// TODO Auto-generated method stub
-		return null;
+		Book book=booksRepositiry.findById(isbn).orElse(null);
+		if(book==null)
+			return null;
+		List<AuthorDto>authors=new ArrayList<>();
+		for (Author author : book.getAuthors()) {
+			authors.add(new AuthorDto(author.getName(), author.getCountry()));
+		}
+		return authors;
 	}
 
 	@Override
