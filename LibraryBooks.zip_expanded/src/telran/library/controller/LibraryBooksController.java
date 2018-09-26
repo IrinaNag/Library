@@ -17,5 +17,17 @@ public class LibraryBooksController {
 	public LibraryReturnCode addAuthor(@RequestBody AuthorDto author) {
 		return library.addAuthor(author);
 	}
+	
+	@PostMapping(value = LibraryApiConstants.ADD_BOOK)
+	public LibraryReturnCode addBook(@RequestBody BookDto book) {
+		return library.addBook(book);
+	}
+	
+	@PostMapping(value = LibraryApiConstants.ADD_READER)
+	public LibraryReturnCode addReader(@RequestBody ReaderDto reader) {
+		return library.addReader(reader);
+	}
+
+
 
 }

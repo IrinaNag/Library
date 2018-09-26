@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @ToString
 public class AuthorDto {
-	public String name;
-	public String country;
+	private String name;
+	private String country;
 
 }

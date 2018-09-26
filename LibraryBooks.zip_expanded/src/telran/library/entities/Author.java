@@ -2,7 +2,10 @@ package telran.library.entities;
 
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Table(name = "authors")
 @Entity

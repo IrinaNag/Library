@@ -1,6 +1,7 @@
 package telran.library.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -17,6 +18,8 @@ import telran.library.dto.BookDto;
 import telran.library.dto.LibraryReturnCode;
 import telran.library.dto.ReaderDto;
 import telran.library.entities.Author;
+import telran.library.entities.Book;
+import telran.library.entities.Reader;
 
 @Service
 public class LibraryOrm implements ILibrary {
@@ -39,9 +42,21 @@ public class LibraryOrm implements ILibrary {
 	}
 
 	@Override
+	@Transactional
 	public LibraryReturnCode addBook(BookDto book) {
-		// TODO Auto-generated method stub
-		return null;
+		if(booksRepositiry.existsById(book.getIsbn()))
+			return LibraryReturnCode.BOOK_ALREADY_EXISTS;
+		List<String> authorNames=book.getAuthorNames();
+		List<Author> authors=new ArrayList<>();
+		for (String authorName : authorNames) {
+			Author author = authorsRepositiry.findById(authorName).orElse(null);
+			if(author==null) 
+				return LibraryReturnCode.NO_AUTHOR;
+			authors.add(author);
+			booksRepositiry.save(new Book(book.getIsbn(), book.getAmount()
+					, book.getTitle(), book.getCover(), book.getPickPeriod(), authors));
+		}
+		return LibraryReturnCode.OK;
 	}
 
 	@Override
@@ -52,8 +67,11 @@ public class LibraryOrm implements ILibrary {
 
 	@Override
 	public LibraryReturnCode addReader(ReaderDto reader) {
-		// TODO Auto-generated method stub
-		return null;
+		if(readersRepositiry.existsById(reader.getId()))
+			return LibraryReturnCode.READER_ALREADY_EXISTS;
+		readersRepositiry.save(new Reader(reader.getId(), reader.getName()
+				, reader.getYear(), reader.getPhone()));
+		return LibraryReturnCode.OK;
 	}
 
 	@Override
