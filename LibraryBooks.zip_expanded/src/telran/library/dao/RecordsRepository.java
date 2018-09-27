@@ -6,4 +6,6 @@ import telran.library.entities.Record;
 
 public interface RecordsRepository extends JpaRepository<Record, Long> {
 
+	Record findByBookAndReaderAndReturnDateNull(Object book, Object reader);
+
 }

@@ -6,4 +6,5 @@ import telran.library.entities.Reader;
 
 public interface ReadersRepository extends JpaRepository<Reader, Integer> {
 
+
 }

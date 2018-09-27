@@ -1,22 +1,15 @@
 package telran.library.dto;
 
+import lombok.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Builder
 public class PickBookData {
-	// TODO all fields required for picking book
 	// (readerId, isbn, pickDate (better to use string ISO with parsing on server)
-	public int readerId;
-	public String pickDate; // ISO format
-	public long isbn;
-
-	public int getReaderId() {
-		return readerId;
-	}
-
-	public String getPickDate() {
-		return pickDate;
-	}
-
-	public long getIsbn() {
-		return isbn;
-	}
+	int readerId;
+	String pickDate; // ISO format
+	long isbn;
 
 }

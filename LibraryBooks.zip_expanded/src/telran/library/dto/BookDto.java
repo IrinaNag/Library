@@ -10,11 +10,11 @@ import lombok.*;
 @Builder
 @ToString
 public class BookDto {
-	private long isbn;
-	private String title;
-	private int amount;
-	private List<String> authorNames;
-	private Cover cover;
-	private int pickPeriod;
+	long isbn;
+	String title;
+	int amount;
+	List<String> authorNames;
+	Cover cover;
+	int pickPeriod;
 
 }
